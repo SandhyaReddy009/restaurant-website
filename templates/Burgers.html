@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burgers Menu</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative; /* Added for positioning the cart button */
+            min-height: 500px; /* Added to ensure space for the button */
+        }
+
+        .menu-items {
+            display: flex;
+            justify-content: space-around; /* Adjusted to space items evenly */
+            overflow-x: auto; /* Allows horizontal scrolling if items overflow */
+        }
+
+        .menu-item {
+            margin: 10px;
+            width: 200px; /* Fixed width for each menu item */
+            text-align: center;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .menu-item h2 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .menu-item p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .quantity {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .quantity input {
+            width: 40px;
+            text-align: center;
+            margin: 0 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .decrease, .increase {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .decrease:hover, .increase:hover {
+            background-color: #45a049;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 0;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .cart-link {
+            display: block;
+            margin: 20px;
+            text-decoration: none;
+            padding: 10px 15px; /* Adjusted padding for the button */
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            position: absolute; /* Positioning the button */
+            bottom: 20px; /* Distance from bottom */
+            right: 20px; /* Distance from right */
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <h1>Burgers Menu</h1>
+        <div class="menu-items">
+            <div class="menu-item">
+                <img src="https://img.freepik.com/premium-photo/gourmet-grilled-chicken-burgers-fries-combo-stylish-craft-box-ultimate-fast-food-delig_983420-114427.jpg" alt="Chicken Lovers Combo">
+                <h2>CHICKEN LOVERS COMBO</h2>
+                <p>Price: ₹150</p>
+                <div class="quantity">
+                    <button class="decrease">-</button>
+                    <input type="number" value="1" min="1" class="quantity-input">
+                    <button class="increase">+</button>
+                </div>
+                <a href="#" class="btn" data-id="13" data-name="Chicken Lovers Combo" data-price="150">Add to Cart</a>
+            </div>
+            <div class="menu-item">
+                <img src="https://img.freepik.com/premium-photo/burger-combo-three-different-types-hamburgers_434193-9087.jpg" alt="Burger Bliss Combo">
+                <h2>BURGER BLISS COMBO</h2>
+                <p>Price: ₹300</p>
+                <div class="quantity">
+                    <button class="decrease">-</button>
+                    <input type="number" value="1" min="1" class="quantity-input">
+                    <button class="increase">+</button>
+                </div>
+                <a href="#" class="btn" data-id="14" data-name="Burger Bliss Combo" data-price="300">Add to Cart</a>
+            </div>
+            <div class="menu-item">
+                <img src="https://pontipizzeria.com/wp-content/uploads/2024/07/Cheese-Burger-.jpeg" alt="Classic Cheeseburger">
+                <h2>CLASSIC CHEESEBURGER</h2>
+                <p>Price: ₹250</p>
+                <div class="quantity">
+                    <button class="decrease">-</button>
+                    <input type="number" value="1" min="1" class="quantity-input">
+                    <button class="increase">+</button>
+                </div>
+                <a href="#" class="btn" data-id="15" data-name="Classic Cheeseburger" data-price="250">Add to Cart</a>
+            </div>
+            <div class="menu-item">
+                <img src="https://www.spicejungle.com/wp/files/2017/03/veggie-burger-recipe.jpg" alt="Black Bean Burger">
+                <h2>BLACK BEAN BURGER</h2>
+                <p>Price: ₹200</p>
+                <div class="quantity">
+                    <button class="decrease">-</button>
+                    <input type="number" value="1" min="1" class="quantity-input">
+                    <button class="increase">+</button>
+                </div>
+                <a href="#" class="btn" data-id="16" data-name="Black Bean Burger" data-price="200">Add to Cart</a>
+            </div>
+            <div class="menu-item">
+                <img src="https://biteswithbri.com/wp-content/uploads/2021/02/HamburgerPattyRecipe04.jpg" alt="BBQ Meat Burger">
+                <h2>BBQ MEAT<br> BURGER</h2>
+                <p>Price: ₹300</p>
+                <div class="quantity">
+                    <button class="decrease">-</button>
+                    <input type="number" value="1" min="1" class="quantity-input">
+                    <button class="increase">+</button>
+                </div>
+                <a href="#" class="btn" data-id="17" data-name="BBQ Meat Burger" data-price="300">Add to Cart</a>
+            </div>
+        </div>
+        <a href="cart.html" class="cart-link">My Cart</a> <!-- Positioned here -->
+    </div>
+
+    <script>
+        function updateQuantity(button) {
+            const input = button.parentElement.querySelector('.quantity-input');
+            let quantity = parseInt(input.value);
+            if (button.classList.contains('increase')) {
+                quantity++;
+            } else if (button.classList.contains('decrease') && quantity > 1) {
+                quantity--;
+            }
+            input.value = quantity;
+        }
+    
+        document.querySelectorAll('.increase').forEach(button => {
+            button.addEventListener('click', () => updateQuantity(button));
+        });
+        document.querySelectorAll('.decrease').forEach(button => {
+            button.addEventListener('click', () => updateQuantity(button));
+        });
+
+        // Handle Add to Cart functionality
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', async (event) => {
+                event.preventDefault(); // Prevent the default anchor click behavior
+                const itemId = button.dataset.id;
+                const itemName = button.dataset.name;
+                const itemPrice = button.dataset.price;
+                const itemQuantity = button.parentElement.querySelector('.quantity-input').value;
+
+                const response = await fetch('/cart', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        productId: itemId,
+                        itemName: itemName,
+                        quantity: parseInt(itemQuantity),
+                        price: parseFloat(itemPrice)
+                    })
+                });
+
+                if (response.ok) {
+                    alert(`${itemQuantity} ${itemName}(s) added to cart!`);
+                } else {
+                    alert('Failed to add item to cart. Please try again.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

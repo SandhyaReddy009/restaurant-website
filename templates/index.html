@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Restaurant website</title>
+
+	<!-- Font Awesome CSS file from CDN -->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+	<!-- Custom CSS file link from the static folder -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+	<!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+
+</head>
+
+<body>
+	<!-- header section start -->
+	<header>
+		<a href="#" class="logo"><img src="{{ url_for('static', filename='logo.png') }}" alt="Logo"></a>
+
+		<nav class="navbar">
+			<a href="#home" class="active">home</a>
+			<a href="#about">about</a>
+			<a href="#menu">menu</a>
+			<a href="#team">team</a>
+			<a href="#reservation">reservation</a>
+			<a href="bookings.html">orders</a>
+		</nav>
+
+		<div class="icons">
+			<i class="fas fa-bars" id="menu"></i>
+			<i class="fas fa-search"></i>
+			<i class="fas fa-heart"></i>
+			<i class="fas fa-shopping-cart"></i>
+		</div>
+	</header>
+	<!-- header section end -->
+
+	<!-- slider section start -->
+	<div class="home" id="home">
+		<div class="swiper home-slider">
+			<div class="swiper-wrapper wrapper">
+				<div class="swiper-slide slide slide1">
+					<div class="content">
+						<img src="{{ url_for('static', filename='crown-symbol.png') }}" alt="Crown Symbol">
+
+						<h3>delicious royate</h3>
+						<h1>gift voucher</h1>
+						<p>give away your beloved customers</p>
+						<a href="Burgers.html" class="btn">order now</a>
+					</div>
+				</div>
+
+				<div class="swiper-slide slide slide2">
+					<div class="content">
+						<img src="{{ url_for('static', filename='crown-symbol.png') }}" alt="Crown Symbol">
+
+						<h3>sale of 10% this dish</h3>
+						<h1>the fresh</h1>
+						<p>food restaurant</p>
+						<a href="Biriyani.html" class="btn">order now</a>
+					</div>
+				</div>
+
+				<div class="swiper-slide slide slide3">
+					<div class="content">
+						<img src="{{ url_for('static', filename='crown-symbol.png') }}" alt="Crown Symbol">
+
+						<h3>we are open</h3>
+						<h1>fresh fruits</h1>
+						<p>you will love it</p>
+						<a href="Salads.html" class="btn">order now</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="swiper-pagination"></div>
+		</div>
+	</div>
+	<!-- slider section ends -->
+
+	<!-- welcome section start -->
+	<section class="welcome" id="about">
+		<h1 class="heading">WELCOME TO ROYATE</h1>
+		<center><h3 class="sub-heading"> ~ Luxury & Quality ~ </h3></center>
+
+		<div class="box-container">
+			<div class="box">
+				<div class="image">
+					<img src="{{ url_for('static', filename='post-thumb-1.jpg') }}" alt="Post 1">
+				</div>
+
+				<div class="content">
+					<h3>PROFESSIONAL LEVEL</h3>
+					<p>nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur.</p>
+                 </div>
+			</div>
+
+			<div class="box">
+				<div class="image">
+					<img src="{{ url_for('static', filename='post-thumb-2.jpg') }}" alt="Post 2">
+				</div>
+
+				<div class="content">
+					<h3>FRESH FOOD GUARANTEED</h3>
+					<p>nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur.</p>
+	
+				</div>
+			</div>
+
+			<div class="box">
+				<div class="image">
+					<img src="{{ url_for('static', filename='post-thumb-3.jpg') }}" alt="Post 3">
+				</div>
+
+				<div class="content">
+					<h3>THE MENU IS PLENTIFUL</h3>
+					<p>nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- welcome section ends -->
+
+	<!-- our menu section start -->
+	<section class="our-menu" id="menu">
+		<h1 class="heading">our food menu</h1>
+		<center><h3 class="sub-heading"> ~ see what we offer ~ </h3></center>
+
+		<div class="menu-container">
+
+			<div class="item">
+				<div class="item-name">
+					<h2>Main Course</h2>
+					<img src="{{ url_for('static', filename='drinks.png') }}" alt="Main Course">
+				</div>
+
+				<div class="item-body">
+					<div class="item-menu">
+						<h3>BIRIYANI NON-VEG</h3><span class="dots"></span><h3>300-1000/-</h3><br/>
+                        <br/>
+						<a href="/Biriyani.html" class="btn">view</a>
+					</div>
+					<div class="item-body">
+						<div class="item-menu">
+							<h3>ROTI</h3><span class="dots"></span><h3>100-500/-</h3><br/>
+							<br/>
+							<a href="/Roti.html" class="btn">view</a>
+						</div>
+						<div class="item-body">
+							<div class="item-menu">
+								<h3>TANDOORI SPECIALS</h3><span class="dots"></span><h3>600-4000/-</h3><br/>
+								<br/>
+								<a href="/Tandoori.html" class="btn">view</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			<div class="item">
+				<div class="item-name">
+					<h2>Salads</h2>
+					<img src="{{ url_for('static', filename='drinks.png') }}" alt="Salads">
+				</div>
+				<div class="item-body">
+					<div class="item-menu">
+						<h3>Salads Specials</h3><span class="dots"></span><h3>200-400/-</h3><br/>
+						<br/>
+				        <a href="/Salads.html" class="btn">view</a>
+					 </div>
+					 </div>
+				</div>
+			</div>
+
+
+			<div class="item">
+				<div class="item-name">
+					<h2>Burgers</h2>
+                </div>
+			<div class="item-body">
+				<div class="item-menu">
+					<h3>Burgers Specials</h3><span class="dots"></span><h3>200-600/-</h3><br/>
+					<br/>
+					<a href="/Burgers.html" class="btn">view</a>
+				 </div>
+				 </div>
+			
+			</div>
+
+		</div>
+	</section>
+	<!-- our menu section ends -->
+
+	<!-- our team section start -->
+	<section class="our-team" id="team">
+		<h1 class="heading">our talented chef</h1>
+		<center>
+			<h3 class="sub-heading"> ~ Experience & Enthusiasm ~ </h3>
+		</center>
+
+		<div class="our-chef">
+			<div class="item">
+				<div class="image">
+					<img src="{{ url_for('static', filename='our-chef-1.jpg') }}" alt="Chef 1">
+				</div>
+
+				<div class="chef-info">
+					<div>
+						<h3>Jerry Robertson</h3>
+						<span>master chef</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="item">
+				<div class="image">
+					<img src="{{ url_for('static', filename='our-chef-2.jpg') }}" alt="Chef 2">
+				</div>
+
+				<div class="chef-info">
+					<div>
+						<h3>Corol Rowson</h3>
+						<span>chef</span>
+					</div>
+				</div>
+				</div>
+
+				<div class="item">
+				<div class="image">
+					<img src="{{ url_for('static', filename='our-chef-3.jpg') }}" alt="Chef 3">
+				</div>
+
+				<div class="chef-info">
+					<div>
+						<h3>Henry Olson</h3>
+						<span>junior chef</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- our team section ends -->
+
+	<!-- reservation section start -->
+	<div class="reservation" id="reservation">
+		<div class="image">
+			<!-- You can add an image here if needed -->
+		</div>
+
+		<div class="form">
+			<h1 class="heading">book a table</h1>
+			<center><h3 class="sub-heading">~ check out our place ~ </h3></center>
+
+			<form action="/bookTable" method="POST">
+				<div class="form-holder">
+					<div>
+						<select name="people">
+							<option>1 </option>
+							<option>2 </option>
+							<option>3 </option>
+							<option>4 </option>
+						</select>
+			
+						<input type="text" name="time" placeholder="Time">
+						
+					</div>
+			
+					<div>
+						<input type="text" name="date" placeholder="Date">
+						<input type="text" name="phone" placeholder="Phone">
+					</div>
+				</div>
+				<center><button type="submit" class="btn">Book now</button></center>
+			</form>
+			
+		</div>
+	</div>
+	<!-- reservation section ends -->
+
+	<!-- footer section start -->
+	<footer class="footer">
+		<h1 class="heading">restaurant royate</h1>
+		<p>best restaurant in the city for the best dishes. We always offer quality and freshness.</p>
+
+		<div class="social-links">
+			<a href="#"><i class="fab fa-facebook-f"></i></a>
+			<a href="#"><i class="fab fa-twitter"></i></a>
+			<a href="#"><i class="fab fa-instagram"></i></a>
+			<a href="#"><i class="fab fa-youtube"></i></a>
+		</div>
+	</footer>
+	<!-- footer section ends -->
+
+	<!-- swiper js -->
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+	<script>
+		var swiper = new Swiper('.home-slider', {
+			loop: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			pagination: {
+				el: '.swiper-pagination',
+				clickable: true,
+			},
+		});
+	</script>
+	<!-- custom js file link -->
+	<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

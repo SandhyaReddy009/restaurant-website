@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Orders</title>
+    <style>
+        /* General Styles */
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #f9f9f9; 
+            color: #444; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            min-height: 100vh; 
+            margin: 0;
+        }
+        .container { 
+            max-width: 700px; 
+            width: 100%; 
+            padding: 25px; 
+            background: #ffffff; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+            transition: all 0.3s ease; 
+        }
+        h1 { 
+            text-align: center; 
+            color: #333; 
+            margin-bottom: 25px; 
+            font-size: 1.8em;
+        }
+
+        /* Table Styles */
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 20px; 
+        }
+        th, td { 
+            padding: 12px; 
+            text-align: center; 
+            border: 1px solid #e0e0e0; 
+        }
+        th { 
+            background-color: #f1f1f1; 
+            color: #333; 
+            font-weight: bold; 
+        }
+        td { 
+            background-color: #fff; 
+        }
+        tr:nth-child(even) td { 
+            background-color: #f9f9f9; 
+        }
+
+        /* No Orders Message */
+        .no-orders { 
+            text-align: center; 
+            color: #999; 
+            font-size: 1.2em; 
+            margin-top: 20px; 
+        }
+
+        /* Next Button Styles */
+        .next-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        .next-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Orders</h1>
+        <div id="ordersTableContainer"></div>
+        
+        <a href="index.html" class="next-btn">Home</a>
+    </div>
+
+    <script>
+        // Fetch user session data from server to check if logged in
+        fetch('/api/userSession')
+            .then(response => {
+                if (response.status === 401) {
+                    // Redirect to login if not authenticated
+                    alert('You need to be logged in to view your orders.');
+                    window.location.href = 'login.html';
+                } else {
+                    return response.json();
+                }
+            })
+            .then(user => {
+                if (user) {
+                    // Fetch orders data for the logged-in user
+                    fetch('/api/orders')
+                        .then(response => response.json())
+                        .then(data => {
+                            const ordersContainer = document.getElementById('ordersTableContainer');
+
+                            if (data.length === 0) {
+                                ordersContainer.innerHTML = '<p class="no-orders">No orders found.</p>';
+                            } else {
+                                let ordersHTML = `
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Order ID</th>
+                                                <th>Date</th>
+                                                <th>Total Amount</th>
+                                                <th>Shipping Address</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>`;
+
+                                data.forEach(order => {
+                                    const formattedOrderDate = new Date(order.date).toLocaleDateString(); // Format the date
+                                    ordersHTML += `
+                                        <tr>
+                                            <td>${order.orderId}</td>
+                                            <td>${formattedOrderDate}</td>
+                                            <td>${order.totalAmount}</td>
+                                            <td>${order.shippingAddress}</td>
+                                        </tr>`;
+                                });
+
+                                ordersHTML += '</tbody></table>';
+                                ordersContainer.innerHTML = ordersHTML;
+                            }
+                        })
+                        .catch(error => console.error('Error fetching orders:', error));
+                }
+            })
+            .catch(error => console.error('Error fetching user session:', error));
+    </script>
+</body>
+</html>

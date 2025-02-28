@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .order-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .form-group {
+            margin: 15px 0;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="order-container">
+        <h1>Complete Your Order</h1>
+        <div id="cart-details"></div>
+
+        <div class="form-group">
+            <input type="text" id="shipping-address" placeholder="Shipping Address" required>
+        </div>
+        <div class="form-group">
+            <select id="payment-method" required>
+                <option value="" disabled selected>Select Payment Method</option>
+                <option value="Cash on Delivery">Cash on Delivery</option>
+                <option value="Credit Card">Credit Card</option>
+                <option value="Debit Card">Debit Card</option>
+                <option value="UPI">UPI</option>
+                <option value="Net Banking">Net Banking</option>
+            </select>
+        </div>
+
+        <div id="total-amount"></div>
+        <button id="place-order" class="btn">Place Order</button>
+        <a href="cart.html" class="btn">Back to Cart</a>
+    </div>
+
+    <script>
+        function renderOrderDetails() {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const totalAmount = localStorage.getItem('totalAmount') || 0;
+
+            let cartDetailsHtml = '';
+            cartItems.forEach(item => {
+                cartDetailsHtml += `<p>${item.itemName} - ₹${item.price} x ${item.quantity}</p>`;
+            });
+
+            document.getElementById('cart-details').innerHTML = cartDetailsHtml;
+            document.getElementById('total-amount').innerText = `Total: ₹${totalAmount}`;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderOrderDetails();
+        });
+
+        document.getElementById('place-order').addEventListener('click', async () => {
+            const shippingAddress = document.getElementById('shipping-address').value;
+            const paymentMethod = document.getElementById('payment-method').value;
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+            if (!shippingAddress || !paymentMethod) {
+                alert('Please fill in all the details.');
+                return;
+            }
+
+            try {
+                const response = await fetch('/place-order', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        cartItems,
+                        shippingAddress,
+                        paymentMethod,
+                    }),
+                });
+
+                if (response.ok) {
+                    alert('Order placed successfully!');
+                    window.location.href = 'index.html'; // Redirect to confirmation page
+                } else {
+                    const result = await response.json();
+                    alert(result.error || 'Failed to place order');
+                }
+            } catch (error) {
+                console.error('Error placing order:', error);
+            }
+        });
+    </script>
+</body>
+</html>
