@@ -12,7 +12,7 @@ app.secret_key = 'your_secret_key'
 app.config['SESSION_TYPE'] = 'filesystem'
 
 # MongoDB Configuration
-app.config["MONGO_URI"] = "mongodb://localhost:27017/sandhya_internship"
+app.config["MONGO_URI"] = "mongodb+srv://gujjulasandhya09022005:sandhya_mongoDB@cluster0.8l86bv3.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 mongo = PyMongo(app)
 
 # Models equivalent to MongoDB collections
