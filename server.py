@@ -36,6 +36,7 @@ def serve_html(filename):
     return send_from_directory(os.path.join(app.root_path, 'public'), filename)
 
 # Routes
+
 @app.route('/register.html')
 def register():
     return render_template('register.html')
@@ -60,6 +61,10 @@ def register_user():
 @app.route('/index.html')
 def index():
     return render_template('index.html')
+@app.route('/')
+def home():
+    return redirect('/index.html')
+
 
 @app.route('/cart.html')
 def cart():
